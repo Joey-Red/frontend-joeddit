@@ -267,15 +267,17 @@ function ViewPost() {
                   )}
                   {loading && (
                     <div className="flex flex-col">
-                      <div className="flex">
-                        <p>j/community</p>
-                        <p className="hidden sm:inline">Posted by</p>
-                        <p>u/username</p>
-                        <p>DD MM YYYY</p>
+                      <div className="flex gap-2">
+                        <p className="animate-pulse">j/community</p>
+                        <p className="hidden sm:inline animate-pulse">
+                          Posted by
+                        </p>
+                        <p className="animate-pulse">u/username</p>
+                        <p className="animate-pulse">DD MM YYYY</p>
                       </div>
                       <div className="flex flex-col text-gray-500 text-lg">
-                        <p>Loading title</p>
-                        <p>Loading body</p>
+                        <p className="animate-pulse">Loading title</p>
+                        <p className="animate-pulse">Loading body</p>
                       </div>
                     </div>
                   )}
