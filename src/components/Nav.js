@@ -1,0 +1,229 @@
+import React, { useContext, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faHouse,
+  faMagnifyingGlass,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { UserContext } from "../context/UserContext";
+import { LogInModalContext } from "../context/LogInModalContext";
+import axios from "axios";
+function Nav() {
+  const { showLogin, setShowLogin } = useContext(LogInModalContext);
+  const { user, setUser } = useContext(UserContext);
+  let [showDropdown, setShowDropdown] = useState(false);
+  let [showAltDropdown, setShowAltDropdown] = useState(false);
+  // Checking login
+  // localStorage.clear();
+  // window.location.href = `http://localhost:3000/`;
+
+  useEffect(() => {
+    const USERNAME_LS = window.localStorage.getItem("USERNAME");
+    const USER_ID = window.localStorage.getItem("USER_ID");
+    const TOKEN = window.localStorage.getItem("TOKEN");
+    const expiry = window.localStorage.getItem("TIMER");
+    if (
+      USERNAME_LS !== null &&
+      USER_ID !== null &&
+      TOKEN !== null &&
+      expiry !== null &&
+      USERNAME_LS !== undefined &&
+      USER_ID !== undefined &&
+      TOKEN !== undefined &&
+      expiry !== undefined
+    ) {
+      const now = new Date();
+      if (now.getTime() > expiry) {
+        axios
+          .post("http://localhost:8080/user/verify-token", { token: TOKEN })
+          .then((res) => {
+            if (res.status === 200) {
+              setUser({ username: USERNAME_LS, _id: USER_ID, token: TOKEN });
+              const now = new Date();
+              let ttl = 86400000;
+              let expiry = now.getTime() + ttl;
+              window.localStorage.removeItem("TIMER");
+              window.localStorage.setItem("TIMER", expiry);
+              // console.log("Timer was expired, JWT was not");
+            }
+          })
+          .catch(function (err) {
+            // console.log(err);
+            localStorage.clear();
+            window.location.href = `http://localhost:3000/`;
+          });
+      } else if (now.getTime() < expiry) {
+        // IF NOT EXPIRED, GOOD TO GO
+        // console.log("Not expired, good to go!");
+        setUser({ username: USERNAME_LS, _id: USER_ID, token: TOKEN });
+      }
+    } else {
+      // console.log("No user");
+      localStorage.clear();
+      // window.location.href = `http://localhost:3000/`;
+    }
+  }, [setUser]);
+  let link;
+  if (
+    user !== null &&
+    user !== undefined &&
+    user.username !== null &&
+    user.username !== undefined
+  ) {
+    link = `http://localhost:3000/u/${user.username}`;
+  }
+
+  function showOptions() {
+    setShowDropdown(!showDropdown);
+  }
+  function showAltOptions() {
+    setShowAltDropdown(!showAltDropdown);
+  }
+
+  function logout() {
+    console.log("clicked");
+    axios
+      .get("http://localhost:8080/user/log-out")
+      .then((res) => {
+        if (res.status === 200) {
+          localStorage.clear();
+          window.location.href = `http://localhost:3000/`;
+        }
+      })
+      .catch(function (err) {
+        // console.log(err);
+        localStorage.clear();
+        window.location.href = `http://localhost:3000/`;
+      });
+  }
+  return (
+    <div className="w-full bg-white h-14 flex justify-evenly items-center lg:px-5">
+      <div className="md:w-52 font-bold text-xl flex justify-center">
+        <a
+          href={`${process.env.PUBLIC_URL}/`}
+          className="px-2 border border-black mr-1 lg:mr-0"
+        >
+          <FontAwesomeIcon icon={faHouse} className="mr-1 hidden lg:inline" />
+          Joeddit
+        </a>
+      </div>
+      <div className="justify-center flex relative md:w-160 min-w-160 md:mx-auto">
+        <input
+          type="text"
+          placeholder="
+          Search Joeddit"
+          className="h-10 border rounded-full p-2 pl-6 md:w-full w-52"
+        />
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className="left-2 top-3 absolute text-[#A2A8B4]"
+        />
+      </div>
+      {/*  rounded border-gray-900/30 border-[1px]  */}
+      <div className="flex items-center ml-2">
+        {/* here */}
+        <button onClick={() => showAltOptions()}>
+          <FontAwesomeIcon
+            icon={faBars}
+            size="2xl"
+            className="text-[#A2A8B4] md:hidden"
+          />
+        </button>
+        {/* testing alt dropdown */}
+        {showAltDropdown && (
+          <div className="absolute z-50 top-[56px] right-0 bg-white border-gray-900/30 border-x-[2px]">
+            <ul className="rounded-br rounded-bl">
+              <a href="/create-post">
+                <li className="p-2 hover:bg-black/20 border-gray-900/30">
+                  Create post
+                </li>
+              </a>
+              <a href={link}>
+                <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
+                  Your page
+                </li>
+              </a>
+              <a href="/u/settings">
+                <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
+                  Settings
+                </li>
+              </a>
+              <button onClick={() => logout()} className="w-full flex">
+                <li className="p-2 w-full flex hover:bg-black/20 border-gray-900/30 border-t-[2px] border-b-[2px]">
+                  Log out
+                </li>
+              </button>
+            </ul>
+          </div>
+        )}
+        {/* testing alt dropdown */}
+        <a href="/create-post" className="rounded-full hidden md:block">
+          <FontAwesomeIcon
+            icon={faPlusCircle}
+            size="2xl"
+            className="left-2 top-3 text-[#A2A8B4] md:pl-2"
+          />
+        </a>
+        <div className="w-32 ml-8 relative hidden md:block">
+          <div className="font-bold">
+            {user !== null ? (
+              <button
+                onClick={() => showOptions()}
+                className="w-full flex pr-2"
+              >
+                {user.username}
+              </button>
+            ) : (
+              <button
+                className="rounded text-white border rounded-full px-3 py-1 bg-red-500"
+                onClick={() => {
+                  setShowLogin(!showLogin);
+                }}
+              >
+                Log in
+              </button>
+            )}
+          </div>
+          {user !== null && (
+            <div className="text-gray-400 flex">
+              <button onClick={() => showOptions()} className="flex w-full">
+                <div className="">900</div>
+                <p className="ml-2">Points</p>
+              </button>
+            </div>
+          )}
+          {showDropdown && (
+            // top-[53.24px]
+            <div className="absolute z-50 top-[51.5px] bg-white w-full border-gray-900/30 border-x-[2px]">
+              <ul className="rounded-br rounded-bl">
+                <a href="/create-post">
+                  <li className="p-2 hover:bg-black/20 border-gray-900/30">
+                    Create post
+                  </li>
+                </a>
+                <a href={link}>
+                  <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
+                    Your page
+                  </li>
+                </a>
+                <a href="/u/settings">
+                  <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
+                    Settings
+                  </li>
+                </a>
+                <button onClick={() => logout()} className="w-full flex">
+                  <li className="p-2 w-full flex hover:bg-black/20 border-gray-900/30 border-t-[2px] border-b-[2px]">
+                    Log out
+                  </li>
+                </button>
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Nav;
