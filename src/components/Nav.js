@@ -14,9 +14,6 @@ function Nav() {
   const { user, setUser } = useContext(UserContext);
   let [showDropdown, setShowDropdown] = useState(false);
   let [showAltDropdown, setShowAltDropdown] = useState(false);
-  // Checking login
-  // localStorage.clear();
-  // window.location.href = `http://localhost:3000/`;
 
   useEffect(() => {
     const USERNAME_LS = window.localStorage.getItem("USERNAME");
@@ -165,12 +162,12 @@ function Nav() {
             className="left-2 top-3 text-[#A2A8B4] md:pl-2"
           />
         </a>
-        <div className="w-32 ml-8 relative hidden md:block">
-          <div className="font-bold">
+        <div className="w-32 ml-8 relative hidden md:flex justify-center items-center h-[48.02px]">
+          <div className="font-bold flex">
             {user !== null ? (
               <button
                 onClick={() => showOptions()}
-                className="w-full flex pr-2"
+                className="w-full flex pr-2 justify-center"
               >
                 {user.username}
               </button>
@@ -185,16 +182,7 @@ function Nav() {
               </button>
             )}
           </div>
-          {user !== null && (
-            <div className="text-gray-400 flex">
-              <button onClick={() => showOptions()} className="flex w-full">
-                <div className="">900</div>
-                <p className="ml-2">Points</p>
-              </button>
-            </div>
-          )}
           {showDropdown && (
-            // top-[53.24px]
             <div className="absolute z-50 top-[51.5px] bg-white w-full border-gray-900/30 border-x-[2px]">
               <ul className="rounded-br rounded-bl">
                 <a href="/create-post">

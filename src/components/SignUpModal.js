@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { LogInModalContext } from "../context/LogInModalContext";
 import { SignUpModalContext } from "../context/SignUpModalContext";
-import { UserContext } from "../context/UserContext";
 
 import axios from "axios";
 import { TempLoginPw } from "../context/TempLoginPwContext";
@@ -10,7 +9,6 @@ import { TempLoginUN } from "../context/TempLoginUNContext";
 function SignUpModal() {
   const { showLogin, setShowLogin } = useContext(LogInModalContext);
   const { showSignUp, setShowSignUp } = useContext(SignUpModalContext);
-  const { user, setUser } = useContext(UserContext);
   const { setTempPw } = useContext(TempLoginPw);
   const { setTempUN } = useContext(TempLoginUN);
   let [usernameSU, setUsernameSU] = useState("");
@@ -33,15 +31,6 @@ function SignUpModal() {
         })
         .then((res) => {
           if (res.status === 200) {
-            // setUser(res.data.user, res.data.token);
-            // setShowLogin(!showLogin);
-            // window.localStorage.setItem("USERNAME", res.data.user.username);
-            // window.localStorage.setItem("USER_ID", res.data.user._id);
-            // window.localStorage.setItem("TOKEN", res.data.token);
-            // const now = new Date();
-            // let ttl = 86400000;
-            // let expiry = now.getTime() + ttl;
-            // window.localStorage.setItem("TIMER", expiry);
             setShowLogin(true);
             setShowSignUp(false);
             setTempUN(JSON.parse(res.config.data).username);

@@ -5,7 +5,6 @@ import { LogInModalContext } from "../context/LogInModalContext";
 import { SignUpModalContext } from "../context/SignUpModalContext";
 import axios from "axios";
 import StandardPostSkeleton from "./StandardPostSkele";
-// import StandardPostTESTING from "./StandardPostTESTING";
 function HomeContainer() {
   let [fetchPosts, setFetchedPosts] = useState([]);
   let [loading, setLoading] = useState(true);

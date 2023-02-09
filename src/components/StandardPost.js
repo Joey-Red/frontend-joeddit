@@ -2,8 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowDown,
-  faArrowUp,
   faCircleMinus,
   faComment,
   faHeart,
@@ -219,10 +217,10 @@ function StandardPost(props) {
                   </button>
                   <p>{pseudoLikes}</p>
                 </div>
-                <button className=" p-2 mr-1 flex items-center">
+                <a href={link} className=" p-2 mr-1 flex items-center">
                   <FontAwesomeIcon icon={faComment} className=" mr-1.5" />
                   <p>{post.numComments}</p>
-                </button>
+                </a>
                 <button className=" p-2 mr-1 flex items-center">
                   <FontAwesomeIcon icon={faShare} className=" mr-1.5" />
                   <p>Share</p>

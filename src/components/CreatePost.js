@@ -22,10 +22,7 @@ function CreatePost() {
   let [communityChosen, setCommunityChosen] = useState(false);
 
   // IMAGE STUFF
-  const [inputContainsFile, setInputContainsFile] = useState(false);
   const [file, setFile] = useState(null);
-  const [progress, setProgress] = useState(null);
-  const [imageId, setImageId] = useState(null);
   const [posting, setPosting] = useState(false);
 
   useEffect(() => {
@@ -41,7 +38,6 @@ function CreatePost() {
 
   const handleFile = (event) => {
     setFile(event.target.files[0]);
-    setInputContainsFile(true);
   };
 
   function createPost() {
@@ -58,15 +54,11 @@ function CreatePost() {
         };
         axios
           .post(`http://localhost:8080/upload`, fd, {
-            onUploadProgress: (ProgressEvent) => {
-              setProgress((ProgressEvent.loaded / ProgressEvent.total) * 100);
-            },
+            onUploadProgress: (ProgressEvent) => {},
           })
           .then(({ data }) => {
-            setImageId(data);
             dynamicVar = data;
             setFile(null);
-            setInputContainsFile(false);
           })
           .catch((err) => {
             console.log(err);
@@ -78,7 +70,6 @@ function CreatePost() {
               }
             } else {
               console.log("other error", err);
-              setInputContainsFile(false);
             }
           })
           .then(() => {

@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import PostSkeleton from "./PostSkeleton";
-import SideFeed from "./SideFeed";
 import StandardPost from "./StandardPost";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";

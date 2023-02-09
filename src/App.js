@@ -15,7 +15,6 @@ import PersonalPage from "./components/PersonalPage";
 import Settings from "./components/Settings";
 import { TempLoginPw } from "./context/TempLoginPwContext";
 import { TempLoginUN } from "./context/TempLoginUNContext";
-// import HomeContainerTESTING from "./components/HomeContainerTESTING";
 function App() {
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState(false);

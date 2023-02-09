@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import {
-  faArrowUp,
-  faArrowDown,
   faComment,
   faShare,
   faHeart,
@@ -203,7 +201,6 @@ function ViewPost() {
       </div>
       <div className="flex justify-center pb-4">
         <div className="flex flex-col relative">
-          {/* TESTING DELETE MODAL */}
           {showDeleteModal && (
             <div className="absolute top-2 left-2 right-2 rounded bg-white z-50 border-red-600 border p-2">
               <div className="items-center justify-center w-full h-full flex flex-col">
@@ -227,20 +224,13 @@ function ViewPost() {
               </div>
             </div>
           )}
-
-          {/* TESTING DELETE MODAL */}
-
           <div className="bg-white md:w-160 sm:border-gray-900/30 sm:border-[1px] sm:rounded">
-            {/* <div className="px-2 py-4"> */}
             <div className="flex sm:p-2 py-4">
               <div className="w-10 flex flex-col items-center rounded-l pr-4 pl-2">
                 <button onClick={upvote} id={upvoteButtonId}>
                   <FontAwesomeIcon icon={faHeart} />
                 </button>
                 {!loading && <>{pseudoLikes}</>}
-                {/* <button>
-                  <FontAwesomeIcon icon={faArrowDown} />
-                </button> */}
                 {!loading &&
                   user !== null &&
                   user !== undefined &&
