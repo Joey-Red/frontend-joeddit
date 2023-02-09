@@ -56,7 +56,7 @@ function SignUpModal() {
       }}
       className="z-50 bg-black/20 h-full w-full fixed top-0 bottom-0 right-0 left-0 flex items-center justify-center"
     >
-      <div className="shadow-lg shadow-black/70 z-50 justify-center items-center bg-white w-1/3 max-w-[400px] rounded p-16">
+      <div className="shadow-lg shadow-black/70 z-50 justify-center items-center bg-white lg:w-1/3 max-w-[400px] rounded p-16">
         <h3 className="text-xl font-medium my-2">Create an Account</h3>
         <p className="text-gray-700 text-sm my-2">Sign up today!</p>
         <form>

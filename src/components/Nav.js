@@ -130,28 +130,34 @@ function Nav() {
         {/* testing alt dropdown */}
         {showAltDropdown && (
           <div className="absolute z-50 top-[56px] right-0 bg-white border-gray-900/30 border-x-[2px]">
-            <ul className="rounded-br rounded-bl">
-              <a href="/create-post">
-                <li className="p-2 hover:bg-black/20 border-gray-900/30">
-                  Create post
-                </li>
-              </a>
-              <a href={link}>
-                <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
-                  Your page
-                </li>
-              </a>
-              <a href="/u/settings">
-                <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
-                  Settings
-                </li>
-              </a>
-              <button onClick={() => logout()} className="w-full flex">
-                <li className="p-2 w-full flex hover:bg-black/20 border-gray-900/30 border-t-[2px] border-b-[2px]">
-                  Log out
-                </li>
-              </button>
-            </ul>
+            {!user || user === null || user === undefined ? (
+              <div className="border-b-2 p-2 border-gray-900/30">
+                <button onClick={() => setShowLogin(!showLogin)}>Log in</button>
+              </div>
+            ) : (
+              <ul className="rounded-br rounded-bl">
+                <a href="/create-post">
+                  <li className="p-2 hover:bg-black/20 border-gray-900/30">
+                    Create post
+                  </li>
+                </a>
+                <a href={link}>
+                  <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
+                    Your page
+                  </li>
+                </a>
+                <a href="/u/settings">
+                  <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
+                    Settings
+                  </li>
+                </a>
+                <button onClick={() => logout()} className="w-full flex">
+                  <li className="p-2 w-full flex hover:bg-black/20 border-gray-900/30 border-t-[2px] border-b-[2px]">
+                    Log out
+                  </li>
+                </button>
+              </ul>
+            )}
           </div>
         )}
         {/* testing alt dropdown */}
