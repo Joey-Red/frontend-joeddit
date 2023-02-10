@@ -16,6 +16,7 @@ function SignUpModal() {
   let [passwordConfirmSU, setPasswordConfirmSU] = useState("");
   let [emailSU, setEmailSU] = useState("");
   let [showErr, setShowErr] = useState(false);
+  let [takenErr, setTakenErr] = useState(false);
   let signUpCall = () => {
     if (
       passwordSU === passwordConfirmSU &&
@@ -37,7 +38,9 @@ function SignUpModal() {
             setTempPw(JSON.parse(res.config.data).password);
           }
         })
-        .catch();
+        .catch(function () {
+          showTakenErr();
+        });
     } else {
       setShowErr(true);
       setTimeout(() => {
@@ -45,7 +48,12 @@ function SignUpModal() {
       }, 3000);
     }
   };
-
+  function showTakenErr() {
+    setTakenErr(true);
+    setTimeout(() => {
+      setTakenErr(false);
+    }, 5000);
+  }
   return (
     <div
       id="sign-up-bg"
@@ -59,6 +67,9 @@ function SignUpModal() {
       <div className="shadow-lg shadow-black/70 z-50 justify-center items-center bg-white lg:w-1/3 max-w-[400px] rounded p-16">
         <h3 className="text-xl font-medium my-2">Create an Account</h3>
         <p className="text-gray-700 text-sm my-2">Sign up today!</p>
+        {takenErr && (
+          <p className="text-red-500">Username or email is taken.</p>
+        )}
         <form>
           <input
             type="text"

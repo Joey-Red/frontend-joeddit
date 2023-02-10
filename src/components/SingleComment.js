@@ -14,6 +14,9 @@ function SingleComment(props) {
   let [upvoteButtonId, setUpvoteButtonId] = useState(null);
   let [pseudoLikes, setPseudoLikes] = useState(0);
 
+  let [postCommentErr, setPostCommentErr] = useState(false);
+  let [emptyCommentErr, setEmptyCommentErr] = useState(false);
+
   const { user } = useContext(UserContext);
   useEffect(() => {
     if (post !== null && post !== undefined) {
@@ -87,10 +90,26 @@ function SingleComment(props) {
             window.location.reload();
           }
         })
-        .catch();
+        .catch(function () {
+          postError();
+        });
     } else {
       // YOU CANNOT POST AN EMPTY COMMENT
+      emptyError();
     }
+  }
+
+  function emptyError() {
+    setEmptyCommentErr(true);
+    setTimeout(() => {
+      setEmptyCommentErr(false);
+    }, 3000);
+  }
+  function postError() {
+    setPostCommentErr(true);
+    setTimeout(() => {
+      setPostCommentErr(false);
+    }, 3000);
   }
 
   // LIKING A COMMENT
@@ -154,6 +173,7 @@ function SingleComment(props) {
           <FontAwesomeIcon icon={faHeart} />
         </button>
         <p>{pseudoLikes}</p>
+
         <button
           onClick={() => setShowCommentField(!showCommentField)}
           className="flex justify-center items-center gap-2 text-gray-500"
@@ -176,9 +196,17 @@ function SingleComment(props) {
               placeholder="That sure was interesting."
               className="my-2 border-gray-900/30 border-[1px] rounded w-full p-1"
             ></textarea>
+            {postCommentErr && (
+              <p className="text-red-500">
+                An Error has occurred, please try again.
+              </p>
+            )}
+            {emptyCommentErr && (
+              <p className="text-red-500">Comment must not be empty</p>
+            )}
             <button
               onClick={() => postComment()}
-              className="bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end"
+              className="bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end w-min"
             >
               Post
             </button>

@@ -10,7 +10,7 @@ import {
 function StandardPostSkele() {
   return (
     <>
-      <div className="animate-pulse md:w-160 relative w-[100vw] sm:px-4">
+      <div className="animate-pulse md:w-160 relative w-[100vw]">
         <div className="flex bg-white sm:mb-2.5 sm:rounded border-[1px] sm:border-l-0 border-gray-900/30">
           <div className="hidden sm:flex  w-10 bg-black/5 px-1 flex flex-col items-center rounded-l py-2 border-l-[1px] border-gray-900/30">
             <button className="w-6 flex justify-center">

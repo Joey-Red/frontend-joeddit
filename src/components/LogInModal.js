@@ -13,6 +13,14 @@ function LogInModal() {
   const { tempUN } = useContext(TempLoginUN);
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
+  let [errMsg, setErrMsg] = useState(false);
+
+  function showErr() {
+    setErrMsg(true);
+    setTimeout(() => {
+      setErrMsg(false);
+    }, 5000);
+  }
   useEffect(() => {
     if (
       tempPw !== null &&
@@ -67,7 +75,9 @@ function LogInModal() {
           window.localStorage.setItem("TIMER", expiry);
         }
       })
-      .catch();
+      .catch(function () {
+        showErr();
+      });
   };
 
   return (
@@ -85,6 +95,9 @@ function LogInModal() {
         <p className="text-gray-700 text-sm my-2">
           Log in, create posts and have fun.
         </p>
+        {errMsg && (
+          <p className="text-red-500">Username or password is incorrect.</p>
+        )}
         <form>
           <input
             autoComplete="username"
@@ -101,7 +114,7 @@ function LogInModal() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </form>
-        <div className="font-light">
+        {/* <div className="font-light">
           Forget your{" "}
           <a href="/forgot-username" className="text-blue-600 underline">
             username
@@ -111,7 +124,7 @@ function LogInModal() {
             password
           </a>
           ?
-        </div>
+        </div> */}
         <button
           onClick={() => logInCall()}
           className="w-full bg-red-500 rounded-full flex justify-center items-center border text-white py-2 my-2"

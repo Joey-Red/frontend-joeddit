@@ -23,7 +23,8 @@ function ViewPost() {
   let [showDeleteModal, setShowDeleteModal] = useState(false);
   let [comments, setComments] = useState([]);
   let [commentsLoading, setCommentsLoading] = useState(true);
-
+  let [postCommentErr, setPostCommentErr] = useState(false);
+  let [emptyCommentErr, setEmptyCommentErr] = useState(false);
   // creating comment
   let [commentBody, setCommentBody] = useState(null);
   const { user } = useContext(UserContext);
@@ -63,12 +64,26 @@ function ViewPost() {
             window.location.reload();
           }
         })
-        .catch();
+        .catch(function () {
+          postError();
+        });
     } else {
       // YOU CANNOT POST AN EMPTY COMMENT
+      emptyError();
     }
   }
-
+  function emptyError() {
+    setEmptyCommentErr(true);
+    setTimeout(() => {
+      setEmptyCommentErr(false);
+    }, 3000);
+  }
+  function postError() {
+    setPostCommentErr(true);
+    setTimeout(() => {
+      setPostCommentErr(false);
+    }, 3000);
+  }
   useEffect(() => {
     let currentURL = window.location.href;
     let postId = currentURL.split("/")[4];
@@ -330,6 +345,14 @@ function ViewPost() {
                       placeholder="Great post!"
                       className="my-2 border-gray-900/30 border-[1px] rounded w-full p-1 h-40"
                     ></textarea>
+                    {postCommentErr && (
+                      <p className="text-red-500">
+                        An Error has occurred, please try again.
+                      </p>
+                    )}
+                    {emptyCommentErr && (
+                      <p className="text-red-500">Comment must not be empty</p>
+                    )}
                     <button
                       onClick={() => postComment()}
                       className="bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end"

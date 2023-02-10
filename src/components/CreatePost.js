@@ -25,6 +25,12 @@ function CreatePost() {
   const [file, setFile] = useState(null);
   const [posting, setPosting] = useState(false);
 
+  // Show Err's
+  let [errUploadingFile, setErrUploadingFile] = useState(false);
+  let [subError, setSubError] = useState(false);
+  let [errCreatingPost, setErrCreatingPost] = useState(false);
+  let [communityErr, setCommunityErr] = useState(false);
+  let [bodyErr, setBodyErr] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:8080/retrieve-communities", {})
@@ -42,6 +48,14 @@ function CreatePost() {
 
   function createPost() {
     setPosting(true);
+    if (community === null || undefined) {
+      chooseCommunity();
+      setPosting(false);
+    }
+    if (body === null || undefined) {
+      addBody();
+      setPosting(false);
+    }
     if (file) {
       if (community !== null && body !== null && title !== null) {
         const fd = new FormData();
@@ -67,6 +81,8 @@ function CreatePost() {
               if (errMsg) {
                 // console.log(errMsg);
                 // alert(errMsg);
+                setErrUploadingFile(true);
+                setPosting(false);
               }
             } else {
               console.log("other error", err);
@@ -94,7 +110,10 @@ function CreatePost() {
                   window.location.href = `http://localhost:3000/retrieve-post/${res.data._id}`;
                 }
               })
-              .catch();
+              .catch(function () {
+                setErrCreatingPost(true);
+                setPosting(false);
+              });
           });
       }
     } else {
@@ -123,7 +142,10 @@ function CreatePost() {
               window.location.href = `http://localhost:3000/retrieve-post/${res.data._id}`;
             }
           })
-          .catch();
+          .catch(function () {
+            setErrCreatingPost(true);
+            setPosting(false);
+          });
       }
     }
   }
@@ -135,6 +157,18 @@ function CreatePost() {
     setAlreadyExists(true);
     setTimeout(() => {
       setAlreadyExists(false);
+    }, 3000);
+  }
+  function chooseCommunity() {
+    setCommunityErr(true);
+    setTimeout(() => {
+      setCommunityErr(false);
+    }, 3000);
+  }
+  function addBody() {
+    setBodyErr(true);
+    setTimeout(() => {
+      setBodyErr(false);
     }, 3000);
   }
   function attemptCreateCommunity() {
@@ -160,7 +194,9 @@ function CreatePost() {
           }
         }
       })
-      .catch();
+      .catch(function () {
+        setSubError(true);
+      });
   }
   function handleChangeComs() {
     setCommunity(null);
@@ -182,6 +218,9 @@ function CreatePost() {
                 onClick={() => setShowCommunities(!showCommunities)}
                 className="cursor-pointer bg-white sm:w-80 flex justify-between h-12 border-gray-900/30 border-[1px] rounded items-center px-2"
               >
+                {subError && (
+                  <p className="text-red-500">An error has occurred.</p>
+                )}
                 <p className="flex items-center">
                   <FontAwesomeIcon icon={faCircleNotch} className="p-1" />
                   Choose a community
@@ -262,13 +301,34 @@ function CreatePost() {
                   className="my-2 border-gray-900/30 border-[1px] rounded w-full p-1 h-40"
                   onChange={(e) => setBody(e.target.value)}
                 ></textarea>
-                <div className="flex flex-col">
+                <div className="flex flex-col w-min bg-black/20 p-2 rounded">
                   <label htmlFor="file">Add image</label>
                   <input onChange={handleFile} type="file" name="file" />
                 </div>
               </div>
             </div>
             <div className="sm:w-full flex justify-end">
+              {errCreatingPost && (
+                <p className="text-red-500 my-auto vertical-align pr-2">
+                  Error creating post, please try again in a moment.
+                </p>
+              )}
+              {errUploadingFile && (
+                <p className="text-red-500 my-auto vertical-align pr-2">
+                  Error uploading file, please try again in a moment.
+                </p>
+              )}
+              {bodyErr && (
+                <p className="text-red-500 my-auto vertical-align pr-2">
+                  Title and body must not be empty.
+                </p>
+              )}
+
+              {communityErr && (
+                <p className="text-red-500 my-auto vertical-align pr-2">
+                  You must choose a community.
+                </p>
+              )}
               {!posting ? (
                 <button
                   onClick={() => createPost()}
@@ -277,7 +337,9 @@ function CreatePost() {
                   Post
                 </button>
               ) : (
-                <>Loading..</>
+                <button className="animated-pulse grayscale bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end">
+                  Post
+                </button>
               )}
             </div>
           </div>
