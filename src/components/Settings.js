@@ -19,7 +19,7 @@ function Settings() {
   useEffect(() => {
     if (user) {
       axios
-        .get("http://localhost:8080/find-user/", {
+        .get("https://red-fantastic-agouti.cyclic.app/find-user/", {
           headers: { userid: user._id },
         })
         .then((res) => {
@@ -78,7 +78,7 @@ function Settings() {
       showNotifButton();
     } else {
       axios
-        .put("http://localhost:8080/update-password", {
+        .put("https://red-fantastic-agouti.cyclic.app/update-password", {
           _id: user._id,
           newPw: setPw,
         })
@@ -93,7 +93,7 @@ function Settings() {
   };
   let submitEmailChange = () => {
     axios
-      .post("http://localhost:8080/update-email", {
+      .post("https://red-fantastic-agouti.cyclic.app/update-email", {
         userId: user._id,
         newEmail: emailCheck,
       })
@@ -106,7 +106,7 @@ function Settings() {
   };
   function deleteAccount() {
     axios
-      .post("http://localhost:8080/delete-account", {
+      .post("https://red-fantastic-agouti.cyclic.app/delete-account", {
         userId: user._id,
       })
       .then((res) => {

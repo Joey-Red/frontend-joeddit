@@ -20,7 +20,7 @@ function SearchPage() {
     // console.log(newQuery);
     if (searchQuery !== null) {
       axios
-        .get("http://localhost:8080/search/:query", {
+        .get("https://red-fantastic-agouti.cyclic.app/search/:query", {
           headers: { searchquery: searchQuery },
         })
         .then((res) => {

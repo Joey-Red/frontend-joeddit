@@ -31,7 +31,7 @@ function LogInModal() {
       tempUN !== ""
     ) {
       axios
-        .post("http://localhost:8080/user/log-in", {
+        .post("https://red-fantastic-agouti.cyclic.app/user/log-in", {
           // username: "Admin",
           // password: "12",
           username: tempUN,
@@ -56,7 +56,7 @@ function LogInModal() {
 
   let logInCall = () => {
     axios
-      .post("http://localhost:8080/user/log-in", {
+      .post("https://red-fantastic-agouti.cyclic.app/user/log-in", {
         username: username,
         password: password,
       })

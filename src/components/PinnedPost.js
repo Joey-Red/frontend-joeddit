@@ -21,7 +21,10 @@ function PinnedPost(props) {
       return;
     } else if (user._id === post.postUserId) {
       axios
-        .delete("http://localhost:8080/delete-personal-post", { headers })
+        .delete(
+          "https://red-fantastic-agouti.cyclic.app/delete-personal-post",
+          { headers }
+        )
         .then((res) => {
           if (res.status === 200) {
             setHidePost(true);

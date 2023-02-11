@@ -11,7 +11,7 @@ function HomeContainer() {
   let [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/retrieve-posts", {})
+      .get("https://red-fantastic-agouti.cyclic.app/retrieve-posts", {})
       .then((res) => {
         if (res.status === 200) {
           setFetchedPosts(res.data);

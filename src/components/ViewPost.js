@@ -47,7 +47,7 @@ function ViewPost() {
       };
       axios
         .post(
-          "http://localhost:8080/create-comment",
+          "https://red-fantastic-agouti.cyclic.app/create-comment",
           {
             username: user.username,
             commentBody: commentBody,
@@ -86,7 +86,7 @@ function ViewPost() {
     let currentURL = window.location.href;
     let postId = currentURL.split("/")[5];
     axios
-      .get("http://localhost:8080/retrieve-post", {
+      .get("https://red-fantastic-agouti.cyclic.app/retrieve-post", {
         headers: { clickedPostId: postId },
       })
       .then((res) => {
@@ -113,7 +113,7 @@ function ViewPost() {
     let currentURL = window.location.href;
     let postId = currentURL.split("/")[5];
     axios
-      .get("http://localhost:8080/retrieve-comments", {
+      .get("https://red-fantastic-agouti.cyclic.app/retrieve-comments", {
         headers: { postid: postId },
       })
       .then((res) => {
@@ -137,7 +137,9 @@ function ViewPost() {
       return;
     } else if (user._id === foundPost.postUserId) {
       axios
-        .delete("http://localhost:8080/delete-post", { headers })
+        .delete("https://red-fantastic-agouti.cyclic.app/delete-post", {
+          headers,
+        })
         .then((res) => {
           if (res.status === 200) {
             window.location.href = "http://localhost:3000";
@@ -156,7 +158,7 @@ function ViewPost() {
       let button = document.getElementById(upvoteButtonId);
       button.classList.add("text-red-600");
       axios
-        .post("http://localhost:8080/like-post", {
+        .post("https://red-fantastic-agouti.cyclic.app/like-post", {
           userId: user._id,
           postId: foundPost._id,
         })
@@ -177,7 +179,7 @@ function ViewPost() {
       let button = document.getElementById(upvoteButtonId);
       button.classList.remove("text-red-600");
       axios
-        .post("http://localhost:8080/unlike-post", {
+        .post("https://red-fantastic-agouti.cyclic.app/unlike-post", {
           userId: user._id,
           postId: foundPost._id,
         })
@@ -296,7 +298,7 @@ function ViewPost() {
                   !loading && (
                     <div className="flex justify-center">
                       <img
-                        src={`http://localhost:8080/image/${foundPost.img}`}
+                        src={`https://red-fantastic-agouti.cyclic.app/image/${foundPost.img}`}
                         alt="user"
                         className="w-[75vw] sm:w-full"
                         // className="max-h-36"

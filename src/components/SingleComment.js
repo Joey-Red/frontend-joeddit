@@ -32,7 +32,7 @@ function SingleComment(props) {
     if (post !== null && post !== undefined) {
       setUpvoteButtonId(`button ${post._id}`);
       axios
-        .get("http://localhost:8080/retrieve-comments", {
+        .get("https://red-fantastic-agouti.cyclic.app/retrieve-comments", {
           headers: { postid: post._id },
         })
         .then((res) => {
@@ -72,7 +72,7 @@ function SingleComment(props) {
       let originalId = currentURL.split("/")[5];
       axios
         .post(
-          "http://localhost:8080/create-comment",
+          "https://red-fantastic-agouti.cyclic.app/create-comment",
           {
             username: user.username,
             commentBody: newCommentBody,
@@ -119,7 +119,7 @@ function SingleComment(props) {
       let button = document.getElementById(upvoteButtonId);
       button.classList.add("text-red-600");
       axios
-        .post("http://localhost:8080/like-comment", {
+        .post("https://red-fantastic-agouti.cyclic.app/like-comment", {
           userId: user._id,
           postId: post._id,
         })
@@ -140,7 +140,7 @@ function SingleComment(props) {
       let button = document.getElementById(upvoteButtonId);
       button.classList.remove("text-red-600");
       axios
-        .post("http://localhost:8080/unlike-comment", {
+        .post("https://red-fantastic-agouti.cyclic.app/unlike-comment", {
           userId: user._id,
           postId: post._id,
         })

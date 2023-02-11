@@ -32,7 +32,7 @@ function CreatePost() {
   let [bodyErr, setBodyErr] = useState(false);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/retrieve-communities", {})
+      .get("https://red-fantastic-agouti.cyclic.app/retrieve-communities", {})
       .then((res) => {
         if (res.status === 200) {
           setFetchedComs(res.data);
@@ -66,7 +66,7 @@ function CreatePost() {
           },
         };
         axios
-          .post(`http://localhost:8080/upload`, fd, {})
+          .post(`https://red-fantastic-agouti.cyclic.app/upload`, fd, {})
           .then(({ data }) => {
             dynamicVar = data;
             setFile(null);
@@ -86,7 +86,7 @@ function CreatePost() {
           .then(() => {
             axios
               .post(
-                "http://localhost:8080/create-post",
+                "https://red-fantastic-agouti.cyclic.app/create-post",
                 {
                   username: user.username,
                   postTitle: title,
@@ -118,7 +118,7 @@ function CreatePost() {
         };
         axios
           .post(
-            "http://localhost:8080/create-post",
+            "https://red-fantastic-agouti.cyclic.app/create-post",
             {
               username: user.username,
               postTitle: title,
@@ -172,7 +172,7 @@ function CreatePost() {
     };
     axios
       .post(
-        "http://localhost:8080/create-community",
+        "https://red-fantastic-agouti.cyclic.app/create-community",
         {
           community: newCommunityName,
           moderators: user._id,

@@ -25,7 +25,7 @@ function SignUpModal() {
       emailSU !== undefined
     ) {
       axios
-        .post("http://localhost:8080/user/sign-up", {
+        .post("https://red-fantastic-agouti.cyclic.app/user/sign-up", {
           username: usernameSU,
           password: passwordSU,
           email: emailSU,

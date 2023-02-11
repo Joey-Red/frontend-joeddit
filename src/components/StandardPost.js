@@ -36,7 +36,7 @@ function StandardPost(props) {
       button.classList.add("text-red-600");
       button2.classList.add("text-red-600");
       axios
-        .post("http://localhost:8080/like-post", {
+        .post("https://red-fantastic-agouti.cyclic.app/like-post", {
           userId: user._id,
           postId: post._id,
         })
@@ -63,7 +63,7 @@ function StandardPost(props) {
       button.classList.remove("text-red-600");
       button2.classList.remove("text-red-600");
       axios
-        .post("http://localhost:8080/unlike-post", {
+        .post("https://red-fantastic-agouti.cyclic.app/unlike-post", {
           userId: user._id,
           postId: post._id,
         })
@@ -114,7 +114,9 @@ function StandardPost(props) {
       return;
     } else if (user._id === post.postUserId) {
       axios
-        .delete("http://localhost:8080/delete-post", { headers })
+        .delete("https://red-fantastic-agouti.cyclic.app/delete-post", {
+          headers,
+        })
         .then((res) => {
           if (res.status === 200) {
             setPostDeleted(true);
@@ -186,7 +188,7 @@ function StandardPost(props) {
                     post.img !== "this is a test" && (
                       <div className="flex justify-center">
                         <img
-                          src={`http://localhost:8080/image/${post.img}`}
+                          src={`https://red-fantastic-agouti.cyclic.app/image/${post.img}`}
                           alt="user"
                           className="max-h-52"
                         />

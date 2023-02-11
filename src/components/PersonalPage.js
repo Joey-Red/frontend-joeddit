@@ -21,7 +21,7 @@ function PersonalPage() {
     let userId = currentURL.split("/")[5];
     setUserId(userId);
     axios
-      .get("http://localhost:8080/u/", {
+      .get("https://red-fantastic-agouti.cyclic.app/u/", {
         headers: { user: userId },
       })
       .then((res) => {
@@ -37,7 +37,7 @@ function PersonalPage() {
     let currentURL = window.location.href;
     let userId = currentURL.split("/")[5];
     axios
-      .get("http://localhost:8080/retrieve-personal-posts", {
+      .get("https://red-fantastic-agouti.cyclic.app/retrieve-personal-posts", {
         headers: { user: userId },
       })
       .then((res) => {
@@ -62,7 +62,7 @@ function PersonalPage() {
       };
       axios
         .post(
-          "http://localhost:8080/personal-post",
+          "https://red-fantastic-agouti.cyclic.app/personal-post",
           {
             username: user.username,
             postBody: newPin,

@@ -10,7 +10,7 @@ function CommunityPage() {
     let currentURL = window.location.href;
     let postId = currentURL.split("/")[5];
     axios
-      .get("http://localhost:8080/retrieve-community-posts", {
+      .get("https://red-fantastic-agouti.cyclic.app/retrieve-community-posts", {
         headers: { community: postId },
       })
       .then((res) => {

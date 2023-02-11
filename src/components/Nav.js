@@ -34,7 +34,9 @@ function Nav() {
       const now = new Date();
       if (now.getTime() > expiry) {
         axios
-          .post("http://localhost:8080/user/verify-token", { token: TOKEN })
+          .post("https://red-fantastic-agouti.cyclic.app/user/verify-token", {
+            token: TOKEN,
+          })
           .then((res) => {
             if (res.status === 200) {
               setUser({ username: USERNAME_LS, _id: USER_ID, token: TOKEN });
@@ -76,7 +78,7 @@ function Nav() {
 
   function logout() {
     axios
-      .get("http://localhost:8080/user/log-out")
+      .get("https://red-fantastic-agouti.cyclic.app/user/log-out")
       .then((res) => {
         if (res.status === 200) {
           localStorage.clear();
