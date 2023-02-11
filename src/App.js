@@ -1,5 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  HashRouter,
+} from "react-router-dom";
 import { SignUpModalContext } from "./context/SignUpModalContext";
 import { LogInModalContext } from "./context/LogInModalContext";
 import { TempLoginPw } from "./context/TempLoginPwContext";
@@ -40,14 +45,14 @@ function App() {
               <SignUpModalContext.Provider
                 value={{ showSignUp, setShowSignUp }}
               >
-                <Router basename={`/${process.env.PUBLIC_URL}`}>
+                {/* <Router basename={`/${process.env.PUBLIC_URL}`}> */}
+                <HashRouter hashtype="noslash">
+                  {/*  basename="http://localhost:3000" */}
                   <Nav />
                   {showLogin && <LogInModal />}
                   {showSignUp && <SignUpModal />}
                   <div>
                     <Routes>
-                      {/* <Route path="/" element={<HomeContainerTESTING />}></Route> */}
-                      <Route path="/" element={<HomeContainer />}></Route>
                       <Route
                         path="/create-post"
                         element={<CreatePost />}
@@ -71,9 +76,11 @@ function App() {
                         path="/search/:query"
                         element={<SearchPage />}
                       ></Route>
+                      <Route path="/" element={<HomeContainer />}></Route>
                     </Routes>
                   </div>
-                </Router>
+                  {/* </Router> */}
+                </HashRouter>
               </SignUpModalContext.Provider>
             </LogInModalContext.Provider>
           </TempLoginUN.Provider>

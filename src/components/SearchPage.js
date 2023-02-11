@@ -9,7 +9,7 @@ function SearchPage() {
   let [noPosts, setNoPosts] = useState(false);
   useEffect(() => {
     let currentURL = window.location.href;
-    let query = currentURL.split("/")[4];
+    let query = currentURL.split("/")[5];
     let newQuery;
     if (query.includes("%")) {
       newQuery = query.replace(/%20/g, " ");

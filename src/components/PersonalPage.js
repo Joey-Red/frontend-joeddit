@@ -18,7 +18,7 @@ function PersonalPage() {
 
   useEffect(() => {
     let currentURL = window.location.href;
-    let userId = currentURL.split("/")[4];
+    let userId = currentURL.split("/")[5];
     setUserId(userId);
     axios
       .get("http://localhost:8080/u/", {
@@ -35,7 +35,7 @@ function PersonalPage() {
 
   useEffect(() => {
     let currentURL = window.location.href;
-    let userId = currentURL.split("/")[4];
+    let userId = currentURL.split("/")[5];
     axios
       .get("http://localhost:8080/retrieve-personal-posts", {
         headers: { user: userId },

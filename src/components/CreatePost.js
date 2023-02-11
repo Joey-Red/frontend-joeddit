@@ -100,7 +100,7 @@ function CreatePost() {
               .then((res) => {
                 console.log(res);
                 if (res.status === 200) {
-                  window.location.href = `http://localhost:3000/retrieve-post/${res.data._id}`;
+                  window.location.href = `http://localhost:3000/#/retrieve-post/${res.data._id}`;
                 }
               })
               .catch(function () {
@@ -132,7 +132,7 @@ function CreatePost() {
             console.log(res);
             if (res.status === 200) {
               //  bring to post
-              window.location.href = `http://localhost:3000/retrieve-post/${res.data._id}`;
+              window.location.href = `http://localhost:3000/#/retrieve-post/${res.data._id}`;
             }
           })
           .catch(function () {

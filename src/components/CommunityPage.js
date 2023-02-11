@@ -8,7 +8,7 @@ function CommunityPage() {
   const [foundPosts, setFoundPosts] = useState([]);
   useEffect(() => {
     let currentURL = window.location.href;
-    let postId = currentURL.split("/")[4];
+    let postId = currentURL.split("/")[5];
     axios
       .get("http://localhost:8080/retrieve-community-posts", {
         headers: { community: postId },

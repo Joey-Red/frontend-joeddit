@@ -64,7 +64,7 @@ function Nav() {
     user.username !== null &&
     user.username !== undefined
   ) {
-    link = `http://localhost:3000/u/${user.username}`;
+    link = `http://localhost:3000/#/u/${user.username}`;
   }
 
   function showOptions() {
@@ -90,7 +90,7 @@ function Nav() {
   }
 
   function searchData() {
-    window.location.href = `http://localhost:3000/search/${searchQuery}`;
+    window.location.href = `http://localhost:3000/#/search/${searchQuery}`;
   }
   const searchInput = React.useRef(null);
 
@@ -178,7 +178,7 @@ function Nav() {
           </div>
         )}
         {/* testing alt dropdown */}
-        <a href="/create-post" className="rounded-full hidden md:block">
+        <a href="/#/create-post" className="rounded-full hidden md:block">
           <FontAwesomeIcon
             icon={faPlusCircle}
             size="2xl"
@@ -208,7 +208,7 @@ function Nav() {
           {showDropdown && (
             <div className="absolute z-50 top-[51.5px] bg-white w-full border-gray-900/30 border-x-[2px]">
               <ul className="rounded-br rounded-bl">
-                <a href="/create-post">
+                <a href="/#/create-post">
                   <li className="p-2 hover:bg-black/20 border-gray-900/30">
                     Create post
                   </li>

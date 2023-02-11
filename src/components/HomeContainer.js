@@ -50,7 +50,7 @@ function HomeContainer() {
           ) : (
             <button className="overflow-hidden md:w-160 relative sm:mb-4 bg-white sm:rounded p-2 h-14 flex justify-center items-center">
               <a
-                href="/create-post"
+                href="/#/create-post"
                 className="text-xl text-white z-10 sm:rounded p-1 bg-red-400 top-0 left-0 right-0 bottom-0 absolute flex justify-center items-center border-gray-900/30 border-[1px]"
               >
                 Create a Post & Join the Conversation

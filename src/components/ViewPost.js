@@ -39,7 +39,7 @@ function ViewPost() {
       commentBody !== null
     ) {
       let currentURL = window.location.href;
-      let postId = currentURL.split("/")[4];
+      let postId = currentURL.split("/")[5];
       let config = {
         headers: {
           Authorization: "Bearer " + user.token,
@@ -84,7 +84,7 @@ function ViewPost() {
   }
   useEffect(() => {
     let currentURL = window.location.href;
-    let postId = currentURL.split("/")[4];
+    let postId = currentURL.split("/")[5];
     axios
       .get("http://localhost:8080/retrieve-post", {
         headers: { clickedPostId: postId },
@@ -96,8 +96,8 @@ function ViewPost() {
           setFoundPost(res.data);
           setPseudoLikes(res.data.numLikes);
           setUpvoteButtonId(`button ${res.data._id}`);
-          setComLink(`/community/${res.data.community}`);
-          setUserLink(`/u/${res.data.postUser}`);
+          setComLink(`/#/community/${res.data.community}`);
+          setUserLink(`/#/u/${res.data.postUser}`);
           let originalDate = res.data.dateAdded;
           let edit = originalDate.split(" ");
           setShownDate(edit[0] + " " + edit[1] + " " + edit[2] + " " + edit[3]);
@@ -111,7 +111,7 @@ function ViewPost() {
 
   useEffect(() => {
     let currentURL = window.location.href;
-    let postId = currentURL.split("/")[4];
+    let postId = currentURL.split("/")[5];
     axios
       .get("http://localhost:8080/retrieve-comments", {
         headers: { postid: postId },

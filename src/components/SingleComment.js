@@ -23,7 +23,7 @@ function SingleComment(props) {
       let originalDate = post.dateAdded;
       let edit = originalDate.split(" ");
       setShownDate(edit[1] + " " + edit[2]);
-      setUserLink(`http://localhost:3000/u/${post?.username}`);
+      setUserLink(`http://localhost:3000/#/u/${post?.username}`);
       setPseudoLikes(post.numLikes);
     }
   }, []);
@@ -69,7 +69,7 @@ function SingleComment(props) {
         },
       };
       let currentURL = window.location.href;
-      let originalId = currentURL.split("/")[4];
+      let originalId = currentURL.split("/")[5];
       axios
         .post(
           "http://localhost:8080/create-comment",
