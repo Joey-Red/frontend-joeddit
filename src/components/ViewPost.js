@@ -212,7 +212,7 @@ function ViewPost() {
         </h1>
       </div>
       <div className="flex justify-center pb-4">
-        <div className="flex flex-col relative w-full">
+        <div className="flex flex-col relative w-full sm:w-max">
           {showDeleteModal && (
             <div className="absolute top-2 left-2 right-2 rounded bg-white z-50 border-red-600 border p-2">
               <div className="items-center justify-center w-full h-full flex flex-col">

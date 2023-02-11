@@ -83,7 +83,7 @@ function StandardPost(props) {
     let container = document.getElementById(dynamicId);
     if (post.img) {
       if (container.classList.contains("max-h-32")) {
-        container.classList.add("max-h-64");
+        container.classList.add("max-h-72");
         container.classList.remove("max-h-32");
       }
     }
@@ -130,7 +130,8 @@ function StandardPost(props) {
       {!postDeleted && (
         <div className="md:w-160 relative">
           {showDeleteModal && (
-            <div className="absolute top-[34px] bottom-[40px] sm:bottom-[50.98px] rounded left-[1px] sm:left-[39.16px] right-[1px] bg-white z-50">
+            // top-[34px] bottom-[40px]
+            <div className="absolute top-2 bottom-[1px] sm:top-[34px]  sm:bottom-[50.98px] rounded left-[1px] sm:left-[39.16px] right-[1px] bg-white z-50">
               <div className="items-center justify-center w-full h-full flex flex-col">
                 <p className="text-center text-xl font-bold">
                   Are you sure you want to delete this post?
@@ -152,8 +153,8 @@ function StandardPost(props) {
               </div>
             </div>
           )}
-          <div className="flex bg-white sm:mb-2.5 sm:rounded border-[1px] sm:border-l-0 border-gray-900/30">
-            <div className="hidden sm:flex  w-10 bg-black/5 px-1 flex flex-col items-center rounded-l py-2 border-l-[1px] border-gray-900/30">
+          <div className="w-[100vw] sm:w-full flex bg-white sm:mb-2.5 sm:rounded border-[1px] sm:border-l-0 border-gray-900/30">
+            <div className="hidden sm:flex w-10 bg-black/5 px-1 flex flex-col items-center rounded-l py-2 border-l-[1px] border-gray-900/30">
               <button
                 onClick={(e) => upvote(e)}
                 className="w-6 flex justify-center"

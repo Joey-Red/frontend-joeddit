@@ -198,7 +198,6 @@ function CreatePost() {
   }
 
   return (
-    // 87.99px
     <div className="min-h-[calc(100vh-56px)] px-6 py-4 bg-stone-300/50">
       <div className="flex justify-center">
         <div className="flex flex-col relative">
@@ -325,12 +324,12 @@ function CreatePost() {
               {!posting ? (
                 <button
                   onClick={() => createPost()}
-                  className="bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end"
+                  className="mt-1 bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end"
                 >
                   Post
                 </button>
               ) : (
-                <button className="animated-pulse grayscale bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end">
+                <button className="mt-1 animated-pulse grayscale bg-red-500 rounded-full text-lg px-4 py-1 mb-2 mr-4 text-white justify-self-end">
                   Post
                 </button>
               )}

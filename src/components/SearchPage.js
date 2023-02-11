@@ -40,7 +40,10 @@ function SearchPage() {
   }, [searchQuery]);
 
   return (
-    <div className="flex flex-col mx-auto w-full h-trueMax">
+    <div className="flex flex-col mx-auto w-full h-trueMax items-center">
+      {!loading && (
+        <p className="text-gray-500 my-2">Search results for {searchQuery}</p>
+      )}
       {!loading &&
         foundPosts.length > 0 &&
         foundPosts.map((post) => {

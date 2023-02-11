@@ -37,8 +37,6 @@ function Contact() {
                   Copy email
                 </button>
               ) : (
-                // 526.23
-                // 525.47
                 <p className="rounded-full border border-green-500 text-green-500 py-2 px-[12.38px] m-2">
                   Copied <FontAwesomeIcon icon={faCheck} />
                 </p>
