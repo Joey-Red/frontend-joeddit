@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -43,7 +43,6 @@ function Nav() {
               let expiry = now.getTime() + ttl;
               window.localStorage.removeItem("TIMER");
               window.localStorage.setItem("TIMER", expiry);
-              // console.log("Timer was expired, JWT was not");
             }
           })
           .catch(function (err) {
@@ -52,14 +51,10 @@ function Nav() {
             window.location.href = `http://localhost:3000/`;
           });
       } else if (now.getTime() < expiry) {
-        // IF NOT EXPIRED, GOOD TO GO
-        // console.log("Not expired, good to go!");
         setUser({ username: USERNAME_LS, _id: USER_ID, token: TOKEN });
       }
     } else {
-      // console.log("No user");
       localStorage.clear();
-      // window.location.href = `http://localhost:3000/`;
     }
   }, [setUser]);
   let link;
@@ -89,7 +84,6 @@ function Nav() {
         }
       })
       .catch(function (err) {
-        // console.log(err);
         localStorage.clear();
         window.location.href = `http://localhost:3000/`;
       });

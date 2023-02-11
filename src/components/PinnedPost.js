@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 function PinnedPost(props) {
   let { post } = props;
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [hidePost, setHidePost] = useState(false);
   function deletePost() {

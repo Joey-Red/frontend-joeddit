@@ -37,7 +37,6 @@ function SingleComment(props) {
         })
         .then((res) => {
           if (res.status === 200) {
-            // console.log(res.data);
             setReplies(res.data);
             setRepliesLoading(false);
             if (post !== null && post !== undefined) {
@@ -126,9 +125,7 @@ function SingleComment(props) {
         })
         .then((res) => {
           if (res.status === 200) {
-            // turn upvote orange add one to count
             setPseudoLikes(post.numLikes + 1);
-            // console.log("successful upvote");
           } else {
             button.classList.remove("text-red-600");
           }

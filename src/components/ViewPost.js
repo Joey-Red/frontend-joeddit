@@ -20,14 +20,12 @@ function ViewPost() {
   let [upvoteButtonId, setUpvoteButtonId] = useState(null);
   let [comLink, setComLink] = useState(null);
   let [userLink, setUserLink] = useState(null);
-  let [dynamicId, setDynamicId] = useState(null);
   let [shownDate, setShownDate] = useState(null);
   let [showDeleteModal, setShowDeleteModal] = useState(false);
   let [comments, setComments] = useState([]);
   let [commentsLoading, setCommentsLoading] = useState(true);
   let [postCommentErr, setPostCommentErr] = useState(false);
   let [emptyCommentErr, setEmptyCommentErr] = useState(false);
-  // creating comment
   let [commentBody, setCommentBody] = useState(null);
   const { user } = useContext(UserContext);
   const { showSignUp, setShowSignUp } = useContext(SignUpModalContext);
@@ -62,8 +60,6 @@ function ViewPost() {
         .then((res) => {
           // console.log(res);
           if (res.status === 200) {
-            //  bring to post
-            // window.location.href = `http://localhost:3000/retrieve-post/${res.data._id}`;
             window.location.reload();
           }
         })
@@ -71,7 +67,6 @@ function ViewPost() {
           postError();
         });
     } else {
-      // YOU CANNOT POST AN EMPTY COMMENT
       emptyError();
     }
   }
@@ -103,18 +98,15 @@ function ViewPost() {
           setUpvoteButtonId(`button ${res.data._id}`);
           setComLink(`/community/${res.data.community}`);
           setUserLink(`/u/${res.data.postUser}`);
-          setDynamicId(`container ${res.data._id}`);
           let originalDate = res.data.dateAdded;
           let edit = originalDate.split(" ");
           setShownDate(edit[0] + " " + edit[1] + " " + edit[2] + " " + edit[3]);
           if (res.data.img) {
             setHasImg(true);
           }
-          // console.log(res.data.img);
         }
       })
       .catch();
-    // console.log(foundPost);
   }, []);
 
   useEffect(() => {
@@ -170,9 +162,7 @@ function ViewPost() {
         })
         .then((res) => {
           if (res.status === 200) {
-            // turn upvote orange add one to count
             setPseudoLikes(foundPost.numLikes + 1);
-            // console.log("successful upvote");
           } else {
             button.classList.remove("text-red-600");
           }
@@ -193,9 +183,7 @@ function ViewPost() {
         })
         .then((res) => {
           if (res.status === 200) {
-            // turn upvote orange add one to count
             setPseudoLikes(foundPost.numLikes - 1);
-            // console.log("successful downvote");
           } else {
             button.classList.add("text-red-600");
           }

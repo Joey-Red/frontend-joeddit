@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCheck,
   faChevronDown,
   faCircleNotch,
 } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +8,7 @@ import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import CommunityButton from "../small-components/CommunityButton";
 function CreatePost() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   let [showCommunities, setShowCommunities] = useState(false);
   let [title, setTitle] = useState(null);
@@ -67,9 +66,7 @@ function CreatePost() {
           },
         };
         axios
-          .post(`http://localhost:8080/upload`, fd, {
-            onUploadProgress: (ProgressEvent) => {},
-          })
+          .post(`http://localhost:8080/upload`, fd, {})
           .then(({ data }) => {
             dynamicVar = data;
             setFile(null);
@@ -79,8 +76,6 @@ function CreatePost() {
             if (err.response.status === 400) {
               const errMsg = err.response.data;
               if (errMsg) {
-                // console.log(errMsg);
-                // alert(errMsg);
                 setErrUploadingFile(true);
                 setPosting(false);
               }
@@ -103,10 +98,8 @@ function CreatePost() {
                 config
               )
               .then((res) => {
-                // console.log("image ran");
                 console.log(res);
                 if (res.status === 200) {
-                  // console.log("image success");
                   window.location.href = `http://localhost:3000/retrieve-post/${res.data._id}`;
                 }
               })

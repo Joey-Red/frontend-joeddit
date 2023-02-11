@@ -13,7 +13,7 @@ function PersonalPage() {
   const [newPin, setNewPin] = useState("");
   const [userId, setUserId] = useState(null);
   const [fetchPosts, setFetchedPosts] = useState([]);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [fetchLoaded, setFetchLoaded] = useState(false);
 
   useEffect(() => {
@@ -72,7 +72,6 @@ function PersonalPage() {
         )
         .then((res) => {
           if (res.status === 200) {
-            console.log(res);
             setShowField(false);
           }
         })
@@ -103,7 +102,6 @@ function PersonalPage() {
         </div>
         <div className="hidden lg:flex relative">
           <div className="w-80 ml-6 flex flex-col">
-            {/* MAP personal side feed */}
             <div className="text-lg bg-white mb-4 border-gray-900/30 border-[1px] flex w-full rounded px-3 py-2 text-center">
               <FontAwesomeIcon
                 icon={faThumbTack}
@@ -152,7 +150,6 @@ function PersonalPage() {
                 )}
               </div>
             )}
-            {/* END MAP PERSONAL SIDE FEED */}
             {user !== null &&
               user !== undefined &&
               user &&

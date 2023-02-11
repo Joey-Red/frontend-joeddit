@@ -1,11 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleMinus,
-  faComment,
-  faHeart,
-  faShare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faComment, faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
 
 function StandardPostSkele() {
   return (
@@ -18,7 +13,6 @@ function StandardPostSkele() {
             </button>
             <p>1</p>
           </div>
-          {/*  flex flex-col w-full */}
           <div className="">
             <div className="text-gray-500 mb-2 mx-2 pt-2">
               <div className="flex gap-4">

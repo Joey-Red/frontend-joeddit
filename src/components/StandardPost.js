@@ -17,7 +17,7 @@ function StandardPost(props) {
   let [postDeleted, setPostDeleted] = useState(false);
   let originalDate = post.dateAdded;
   let edit = originalDate.split(" ");
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { showLogin, setShowLogin } = useContext(LogInModalContext);
 
   let shownDate = edit[0] + " " + edit[1] + " " + edit[2] + " " + edit[3];
@@ -42,10 +42,7 @@ function StandardPost(props) {
         })
         .then((res) => {
           if (res.status === 200) {
-            // turn upvote orange add one to count
-
             setPseudoLikes(post.numLikes + 1);
-            // console.log("successful upvote");
           } else {
             button.classList.remove("text-red-600");
             button2.classList.remove("text-red-600");
@@ -72,9 +69,7 @@ function StandardPost(props) {
         })
         .then((res) => {
           if (res.status === 200) {
-            // turn upvote orange add one to count
             setPseudoLikes(post.numLikes - 1);
-            // console.log("successful downvote");
           } else {
             button.classList.add("text-red-600");
             button2.classList.add("text-red-600");
@@ -92,7 +87,6 @@ function StandardPost(props) {
         container.classList.remove("max-h-32");
       }
     }
-    // }, [dynamicId, post.img]);
   }, []);
 
   useEffect(() => {
@@ -104,7 +98,6 @@ function StandardPost(props) {
         button2.classList.add("text-red-600");
       }
     }
-    // }, [post.likedByUsers, upvoteButtonId, upvoteButtonId2, user]);
   }, []);
 
   let comLink = `/community/${post.community}`;
@@ -124,11 +117,8 @@ function StandardPost(props) {
         .delete("http://localhost:8080/delete-post", { headers })
         .then((res) => {
           if (res.status === 200) {
-            // post was successfully deleted
             setPostDeleted(true);
-            // console.log(res);
           } else {
-            console.log(res);
           }
         })
         .catch();
@@ -250,7 +240,6 @@ function StandardPost(props) {
                   )}
               </div>
             </div>
-            {/* </a> */}
           </div>
         </div>
       )}

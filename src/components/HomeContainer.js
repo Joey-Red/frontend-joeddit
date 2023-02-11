@@ -20,7 +20,7 @@ function HomeContainer() {
       })
       .catch();
   }, []);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { showLogin, setShowLogin } = useContext(LogInModalContext);
   const { showSignUp, setShowSignUp } = useContext(SignUpModalContext);
   useEffect(() => {

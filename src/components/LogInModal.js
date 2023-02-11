@@ -8,7 +8,7 @@ import { TempLoginUN } from "../context/TempLoginUNContext";
 function LogInModal() {
   const { showLogin, setShowLogin } = useContext(LogInModalContext);
   const { showSignUp, setShowSignUp } = useContext(SignUpModalContext);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const { tempPw } = useContext(TempLoginPw);
   const { tempUN } = useContext(TempLoginUN);
   let [username, setUsername] = useState("");
@@ -57,8 +57,6 @@ function LogInModal() {
   let logInCall = () => {
     axios
       .post("http://localhost:8080/user/log-in", {
-        // username: "Admin",
-        // password: "12",
         username: username,
         password: password,
       })
@@ -114,17 +112,6 @@ function LogInModal() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </form>
-        {/* <div className="font-light">
-          Forget your{" "}
-          <a href="/forgot-username" className="text-blue-600 underline">
-            username
-          </a>{" "}
-          or{" "}
-          <a href="/forgot-password" className="text-blue-600 underline">
-            password
-          </a>
-          ?
-        </div> */}
         <button
           onClick={() => logInCall()}
           className="w-full bg-red-500 rounded-full flex justify-center items-center border text-white py-2 my-2"

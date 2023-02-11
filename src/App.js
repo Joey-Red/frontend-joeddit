@@ -1,21 +1,22 @@
 import React, { useState, useMemo } from "react";
-import CreatePost from "./components/CreatePost";
-import HomeContainer from "./components/HomeContainer";
-import Nav from "./components/Nav";
-import { UserContext } from "./context/UserContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ViewPost from "./components/ViewPost";
-import Contact from "./components/Contact";
-import LogInModal from "./components/LogInModal";
-import { LogInModalContext } from "./context/LogInModalContext";
 import { SignUpModalContext } from "./context/SignUpModalContext";
-import SignUpModal from "./components/SignUpModal";
-import CommunityPage from "./components/CommunityPage";
-import PersonalPage from "./components/PersonalPage";
-import Settings from "./components/Settings";
+import { LogInModalContext } from "./context/LogInModalContext";
 import { TempLoginPw } from "./context/TempLoginPwContext";
 import { TempLoginUN } from "./context/TempLoginUNContext";
+import { UserContext } from "./context/UserContext";
+import Nav from "./components/Nav";
+import Contact from "./components/Contact";
+import ViewPost from "./components/ViewPost";
+import Settings from "./components/Settings";
+import CreatePost from "./components/CreatePost";
+import LogInModal from "./components/LogInModal";
 import SearchPage from "./components/SearchPage";
+import SignUpModal from "./components/SignUpModal";
+import PersonalPage from "./components/PersonalPage";
+import CommunityPage from "./components/CommunityPage";
+import HomeContainer from "./components/HomeContainer";
+
 function App() {
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState(false);

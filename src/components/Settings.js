@@ -14,7 +14,7 @@ function Settings() {
   let [showEmailForm, setShowEmailForm] = useState(false);
   let [foundUser, setFoundUser] = useState(null);
   let [loading, setLoading] = useState(true);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (user) {
@@ -83,10 +83,8 @@ function Settings() {
           newPw: setPw,
         })
         .then((res) => {
-          // console.log("image ran");
           console.log(res);
           if (res.status === 200) {
-            // console.log("image success");
             showSuccessButton();
           }
         })
@@ -100,10 +98,7 @@ function Settings() {
         newEmail: emailCheck,
       })
       .then((res) => {
-        // console.log("image ran");
-        console.log(res);
         if (res.status === 200) {
-          // console.log("image success");
           showSuccessEmailButton();
         }
       })
