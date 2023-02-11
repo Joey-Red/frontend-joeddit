@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SingleComment from "./SingleComment";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import { SignUpModalContext } from "../context/SignUpModalContext";
+
 import SingleCommentSkele from "./SingleCommentSkele";
 function ViewPost() {
   let [foundPost, setFoundPost] = useState();
@@ -28,6 +30,7 @@ function ViewPost() {
   // creating comment
   let [commentBody, setCommentBody] = useState(null);
   const { user } = useContext(UserContext);
+  const { showSignUp, setShowSignUp } = useContext(SignUpModalContext);
 
   function postComment() {
     if (
@@ -202,7 +205,13 @@ function ViewPost() {
   }
   useEffect(() => {
     let button = document.getElementById(upvoteButtonId);
-    if (!loading && foundPost && foundPost.likedByUsers.includes(user._id)) {
+    if (
+      !loading &&
+      foundPost &&
+      user !== null &&
+      user !== undefined &&
+      foundPost.likedByUsers.includes(user._id)
+    ) {
       button.classList.add("text-red-600");
     }
   }, [upvoteButtonId]);
@@ -215,7 +224,7 @@ function ViewPost() {
         </h1>
       </div>
       <div className="flex justify-center pb-4">
-        <div className="flex flex-col relative">
+        <div className="flex flex-col relative w-full">
           {showDeleteModal && (
             <div className="absolute top-2 left-2 right-2 rounded bg-white z-50 border-red-600 border p-2">
               <div className="items-center justify-center w-full h-full flex flex-col">
@@ -361,7 +370,12 @@ function ViewPost() {
                     </button>
                   </>
                 ) : (
-                  <>Log in to comment</>
+                  <button
+                    className="bg-red-500 rounded-full w-max p-1 px-2 text-white"
+                    onClick={() => setShowSignUp(!showSignUp)}
+                  >
+                    Log in to comment
+                  </button>
                 )}
               </div>
             </div>
@@ -382,6 +396,11 @@ function ViewPost() {
                   <SingleCommentSkele />
                   <SingleCommentSkele />
                 </>
+              )}
+              {!commentsLoading && comments.length === 0 && (
+                <p className="text-gray-500 text-center">
+                  Be the first to comment!
+                </p>
               )}
             </div>
           </div>

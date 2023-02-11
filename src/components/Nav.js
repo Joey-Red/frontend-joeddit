@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -14,6 +14,7 @@ function Nav() {
   const { user, setUser } = useContext(UserContext);
   let [showDropdown, setShowDropdown] = useState(false);
   let [showAltDropdown, setShowAltDropdown] = useState(false);
+  let [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const USERNAME_LS = window.localStorage.getItem("USERNAME");
@@ -79,7 +80,6 @@ function Nav() {
   }
 
   function logout() {
-    console.log("clicked");
     axios
       .get("http://localhost:8080/user/log-out")
       .then((res) => {
@@ -94,6 +94,27 @@ function Nav() {
         window.location.href = `http://localhost:3000/`;
       });
   }
+
+  function searchData() {
+    window.location.href = `http://localhost:3000/search/${searchQuery}`;
+  }
+  const searchInput = React.useRef(null);
+
+  function enterFunc(event) {
+    if (document.activeElement === searchInput.current) {
+      if (searchQuery.length > 0 && event.key === "Enter") {
+        searchData();
+      }
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", enterFunc, false);
+
+    return () => {
+      document.removeEventListener("keydown", enterFunc, false);
+    };
+  }, [enterFunc]);
   return (
     <div className="w-full bg-white h-14 flex justify-evenly items-center lg:px-5">
       <div className="md:w-52 font-bold text-xl flex justify-center">
@@ -111,6 +132,8 @@ function Nav() {
           placeholder="
           Search Joeddit"
           className="h-10 border rounded-full p-2 pl-6 md:w-full w-52"
+          ref={searchInput}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <FontAwesomeIcon
           icon={faMagnifyingGlass}

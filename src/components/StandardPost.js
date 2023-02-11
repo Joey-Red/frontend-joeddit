@@ -8,6 +8,7 @@ import {
   faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../context/UserContext";
+import { LogInModalContext } from "../context/LogInModalContext";
 
 function StandardPost(props) {
   let { post } = props;
@@ -17,11 +18,16 @@ function StandardPost(props) {
   let originalDate = post.dateAdded;
   let edit = originalDate.split(" ");
   const { user, setUser } = useContext(UserContext);
+  const { showLogin, setShowLogin } = useContext(LogInModalContext);
+
   let shownDate = edit[0] + " " + edit[1] + " " + edit[2] + " " + edit[3];
   let upvoteButtonId = `button ${post._id}`;
   let upvoteButtonId2 = `button2 ${post._id}`;
   const link = `http://localhost:3000/retrieve-post/${post._id}`;
   function upvote(e) {
+    if (user === null || user === undefined) {
+      setShowLogin(!showLogin);
+    }
     if (post.likedByUsers.includes(user._id)) {
       downvote();
     } else {
@@ -49,6 +55,9 @@ function StandardPost(props) {
     }
   }
   function downvote(e) {
+    if (user === null || user === undefined) {
+      setShowLogin(!showLogin);
+    }
     if (!post.likedByUsers.includes(user._id)) {
       upvote();
     } else {

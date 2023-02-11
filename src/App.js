@@ -15,6 +15,7 @@ import PersonalPage from "./components/PersonalPage";
 import Settings from "./components/Settings";
 import { TempLoginPw } from "./context/TempLoginPwContext";
 import { TempLoginUN } from "./context/TempLoginUNContext";
+import SearchPage from "./components/SearchPage";
 function App() {
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState(false);
@@ -65,6 +66,10 @@ function App() {
                       ></Route>
                       <Route path="/u/:id" element={<PersonalPage />}></Route>
                       <Route path="/u/settings" element={<Settings />}></Route>
+                      <Route
+                        path="/search/:query"
+                        element={<SearchPage />}
+                      ></Route>
                     </Routes>
                   </div>
                 </Router>
