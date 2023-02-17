@@ -68,7 +68,7 @@ function Contact() {
               </p>
             )}
           </div>
-          <a href="/" className="underline">
+          <a href="https://joeddit.com/" className="underline">
             Go back home
           </a>
         </div>

@@ -23,7 +23,7 @@ function SingleComment(props) {
       let originalDate = post.dateAdded;
       let edit = originalDate.split(" ");
       setShownDate(edit[1] + " " + edit[2]);
-      setUserLink(`http://localhost:3000/#/u/${post?.username}`);
+      setUserLink(`https://joeddit.com/#/u/${post?.username}`);
       setPseudoLikes(post.numLikes);
     }
   }, []);

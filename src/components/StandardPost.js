@@ -23,7 +23,7 @@ function StandardPost(props) {
   let shownDate = edit[0] + " " + edit[1] + " " + edit[2] + " " + edit[3];
   let upvoteButtonId = `button ${post._id}`;
   let upvoteButtonId2 = `button2 ${post._id}`;
-  const link = `http://localhost:3000/#/retrieve-post/${post._id}`;
+  const link = `https://joeddit.com/#/retrieve-post/${post._id}`;
   function upvote(e) {
     if (user === null || user === undefined) {
       setShowLogin(!showLogin);

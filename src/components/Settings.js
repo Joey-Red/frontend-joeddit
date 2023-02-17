@@ -113,7 +113,7 @@ function Settings() {
         console.log(res);
         if (res.status === 200) {
           localStorage.clear();
-          window.location.href = `http://localhost:3000/`;
+          window.location.href = `https://joeddit.com/`;
         }
       })
       .catch();

@@ -50,7 +50,7 @@ function Nav() {
           .catch(function (err) {
             // console.log(err);
             localStorage.clear();
-            window.location.href = `http://localhost:3000/`;
+            window.location.href = `https://joeddit.com/`;
           });
       } else if (now.getTime() < expiry) {
         setUser({ username: USERNAME_LS, _id: USER_ID, token: TOKEN });
@@ -66,7 +66,7 @@ function Nav() {
     user.username !== null &&
     user.username !== undefined
   ) {
-    link = `http://localhost:3000/#/u/${user.username}`;
+    link = `https://joeddit.com/#/u/${user.username}`;
   }
 
   function showOptions() {
@@ -82,17 +82,17 @@ function Nav() {
       .then((res) => {
         if (res.status === 200) {
           localStorage.clear();
-          window.location.href = `http://localhost:3000/`;
+          window.location.href = `https://joeddit.com/`;
         }
       })
       .catch(function (err) {
         localStorage.clear();
-        window.location.href = `http://localhost:3000/`;
+        window.location.href = `https://joeddit.com/`;
       });
   }
 
   function searchData() {
-    window.location.href = `http://localhost:3000/#/search/${searchQuery}`;
+    window.location.href = `https://joeddit.com/#/search/${searchQuery}`;
   }
   const searchInput = React.useRef(null);
 
