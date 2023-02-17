@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/frontend-joeddit/static/css/main.2e6875ec.css",
-    "main.js": "/frontend-joeddit/static/js/main.c4d5309d.js",
-    "static/media/coffee-asset.jpg": "/frontend-joeddit/static/media/coffee-asset.a67d8ed64cae3c03005d.jpg",
-    "index.html": "/frontend-joeddit/index.html",
-    "main.2e6875ec.css.map": "/frontend-joeddit/static/css/main.2e6875ec.css.map",
-    "main.c4d5309d.js.map": "/frontend-joeddit/static/js/main.c4d5309d.js.map"
+    "main.css": "/static/css/main.2e6875ec.css",
+    "main.js": "/static/js/main.c61437ad.js",
+    "static/media/coffee-asset.jpg": "/static/media/coffee-asset.a67d8ed64cae3c03005d.jpg",
+    "index.html": "/index.html",
+    "main.2e6875ec.css.map": "/static/css/main.2e6875ec.css.map",
+    "main.c61437ad.js.map": "/static/js/main.c61437ad.js.map"
   },
   "entrypoints": [
     "static/css/main.2e6875ec.css",
-    "static/js/main.c4d5309d.js"
+    "static/js/main.c61437ad.js"
   ]
 }
