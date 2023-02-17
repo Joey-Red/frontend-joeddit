@@ -2,7 +2,7 @@
   "name": "joeddit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://joey-red.github.io/frontend-joeddit",
+  "homepage": "https://joeddit.com",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
