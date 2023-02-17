@@ -98,7 +98,7 @@ function CreatePost() {
                 config
               )
               .then((res) => {
-                console.log(res);
+                // console.log(res);
                 if (res.status === 200) {
                   window.location.href = `https://joeddit.com/#/retrieve-post/${res.data._id}`;
                 }

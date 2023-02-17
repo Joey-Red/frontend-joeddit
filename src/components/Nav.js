@@ -220,7 +220,7 @@ function Nav() {
                     Your page
                   </li>
                 </a>
-                <a href="/u/settings">
+                <a href="/#/u/settings">
                   <li className="p-2 hover:bg-black/20 border-gray-900/30 border-t-[2px]">
                     Settings
                   </li>
